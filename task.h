@@ -7,13 +7,14 @@ struct Task {
   pthread_t thread;
   void*     value;
   int       running;
+  void*     arg;
   void *(*fun)(struct Task*);
 };
 
 typedef struct Task* Task;
 
 void* task_runner(void* t);
-int   task_new(Task* t, void *(*fun)(Task));
+int   task_new(Task* t, void *(*fun)(Task), void *arg);
 void* task_get(Task t);
 void  task_destroy(Task t);
 
